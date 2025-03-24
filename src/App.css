@@ -175,3 +175,24 @@ button {
 .create-post-container textarea {
   height: 150px;
 }
+
+/* Patient Dashboard Styles */
+.appointments-list {
+  margin: 2rem 0;
+}
+
+.appointment-card {
+  background: #f8f9fa;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.appointment-form {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
