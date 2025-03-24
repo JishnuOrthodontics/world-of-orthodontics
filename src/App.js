@@ -16,19 +16,31 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/forum" className="nav-link">Forum</Link>
-          <Link to="/contact">Contact</Link>
-          {auth.currentUser ? (
-            <Link to="/logout">Logout</Link>
-          ) : (
-            <>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
-            </>
-          )}
-        </nav>
+      <nav>
+  <div className="nav-container">
+    <Link to="/" className="nav-link nav-brand">OrthoCare</Link>
+    
+    <div className="main-links">
+      <Link to="/" className="nav-link">Home</Link>
+      <Link to="/contact" className="nav-link">Contact</Link>
+      <Link to="/forum" className="nav-link">Forum</Link>
+    </div>
+
+    <div className="auth-links">
+      {auth.currentUser ? (
+        <>
+          <Link to="/dashboard" className="nav-link">Dashboard</Link>
+          <button onClick={handleLogout} className="nav-link">Logout</button>
+        </>
+      ) : (
+        <>
+          <Link to="/login" className="nav-link">Login</Link>
+          <Link to="/signup" className="nav-link">Sign Up</Link>
+        </>
+      )}
+    </div>
+  </div>
+</nav>
 
         <Routes>
           <Route path="/" element={<Home />} />
