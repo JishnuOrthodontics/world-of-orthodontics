@@ -9,6 +9,8 @@ import DoctorDashboard from './components/Dashboard/DoctorDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import { auth } from './firebase';
 import './App.css';
+import ForumHome from './components/Forum/ForumHome';
+import CreatePost from './components/Forum/CreatePost';
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
       <div className="App">
         <nav>
           <Link to="/">Home</Link>
+          <Link to="/forum" className="nav-link">Forum</Link>
           <Link to="/contact">Contact</Link>
           {auth.currentUser ? (
             <Link to="/logout">Logout</Link>
@@ -32,16 +35,15 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/patient-dashboard" element={
-            <ProtectedRoute allowedRoles={['patient']}>
-              <PatientDashboard />
-            </ProtectedRoute>
-          } />
-          <Route path="/doctor-dashboard" element={
-            <ProtectedRoute allowedRoles={['doctor']}>
-              <DoctorDashboard />
-            </ProtectedRoute>
-          } />
+          <Route path="/patient-dashboard" element={<ProtectedRoute allowedRoles={['patient']}> <PatientDashboard />
+            </ProtectedRoute>} />
+          <Route path="/doctor-dashboard" element={<ProtectedRoute allowedRoles={['doctor']}> <DoctorDashboard />
+            </ProtectedRoute>} />
+          <Route path="/forum" element={<ForumHome />} /> <Route path="/create-post" element={<ProtectedRoute allowedRoles={['patient', 'doctor']}>
+      <CreatePost />
+    </ProtectedRoute>
+  } 
+/>
         </Routes>
       </div>
     </Router>

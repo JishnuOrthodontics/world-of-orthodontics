@@ -123,3 +123,55 @@ button {
 .approve-btn:hover {
   background-color: #218838;
 }
+
+/* Forum Styles */
+.forum-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.new-post-button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background: #3498db;
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  text-decoration: none;
+}
+
+.posts-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.post-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.create-post-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.create-post-container form {
+  display: grid;
+  gap: 1rem;
+}
+
+.create-post-container textarea {
+  height: 150px;
+}
