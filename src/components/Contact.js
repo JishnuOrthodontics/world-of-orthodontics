@@ -5,36 +5,53 @@ import { collection, addDoc } from 'firebase/firestore';
 const Contact = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Save to Firestore
-      await addDoc(collection(db, 'contacts'), { name, email });
+      await addDoc(collection(db, 'contacts'), {
+        name,
+        email,
+        message,
+        timestamp: new Date().toISOString(),
+      });
       alert('Message sent!');
       setName('');
       setEmail('');
+      setMessage('');
     } catch (error) {
       alert('Error: ' + error.message);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Your Name"
-      />
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Your Email"
-      />
-      <button type="submit">Send</button>
-    </form>
+    <div className="form-container">
+      <h2>Contact Us</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Your Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+        <input
+          type="email"
+          placeholder="Your Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <textarea
+          placeholder="Your Message"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          required
+        />
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
   );
 };
 
