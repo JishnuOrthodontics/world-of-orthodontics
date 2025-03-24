@@ -58,3 +58,68 @@ button {
   color: #e74c3c;
   margin: 0.5rem 0;
 }
+
+/* Role Dropdown Styling */
+.form-group {
+  margin: 1rem 0;
+}
+
+.role-dropdown {
+  width: 100%;
+  padding: 0.8rem;
+  margin-top: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: white;
+}
+
+/* Doctor Dashboard Styles */
+.dashboard {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.appointments-section {
+  margin: 2rem 0;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.appointments-list {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.appointment-card {
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.appointment-card.pending {
+  background: #fff3cd;
+  border-color: #ffeeba;
+}
+
+.appointment-card.approved {
+  background: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.approve-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.approve-btn:hover {
+  background-color: #218838;
+}

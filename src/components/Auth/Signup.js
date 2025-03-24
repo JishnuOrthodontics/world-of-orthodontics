@@ -1,29 +1,29 @@
+// src/components/Auth/Signup.js
 import React, { useState } from 'react';
-import { auth, db } from '../firebase';
+import { auth, db } from '../../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const [error, setError] = useState('');
+  const [role, setRole] = useState('patient');
+  const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    setError('');
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       await setDoc(doc(db, 'users', userCredential.user.uid), {
         name,
         email,
-        role: 'patient',
-        createdAt: new Date().toISOString(),
+        role,
+        createdAt: new Date().toISOString()
       });
-      alert('Account created!');
+      navigate(role === 'patient' ? '/patient-dashboard' : '/doctor-dashboard');
     } catch (error) {
-      setError(error.message);
       alert('Error: ' + error.message);
     }
   };
@@ -53,10 +53,17 @@ const Signup = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        <select 
+          value={role} 
+          onChange={(e) => setRole(e.target.value)}
+          className="role-dropdown"
+        >
+          <option value="patient">Patient</option>
+          <option value="doctor">Doctor</option>
+        </select>
         <button type="submit">Sign Up</button>
       </form>
-      {error && <p className="error-message">{error}</p>}
-      <p>Already have an account? <Link to="/login">Login</Link></p>
+      <p>Already have an account? <a href="/login">Login</a></p>
     </div>
   );
 };
